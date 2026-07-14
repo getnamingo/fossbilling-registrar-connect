@@ -27,9 +27,9 @@ If this is not your first registrar module, you may skip copying the `namingo/` 
 
 5. Add a new Top Level Domain (TLD) using your module from the "**New Top Level Domain**" tab. Make sure to configure all necessary details, such as pricing, within this tab.
 
-### Mandatory FOSSBilling Core Changes (FOSSBilling 0.8.3)
+### Mandatory FOSSBilling Core Changes (FOSSBilling < 0.8.4)
 
-If you are using **FOSSBilling 0.8.3**, the following temporary core changes are required due to bugs in FOSSBilling.
+If you are using a **FOSSBilling version earlier than 0.8.4**, the following temporary core changes may be required due to bugs in older FOSSBilling releases. These workarounds are not required on **FOSSBilling 0.8.4 or later**.
 
 #### 1. Prevent Duplicate Domain Registration
 
@@ -42,8 +42,6 @@ if ($order->status === \Model_ClientOrder::STATUS_ACTIVE) {
     return true;
 }
 ```
-
-This workaround prevents duplicate order activation, which may otherwise result in a second domain registration attempt during checkout.
 
 #### 2. Registrar Adapter Autoload Fix
 
@@ -60,8 +58,6 @@ $file = Path::join(PATH_LIBRARY, 'Registrar', 'Adapter', "{$model->registrar}.ph
 
 require_once $file;
 ```
-
-This workaround is only required for **FOSSBilling 0.8.3** and will no longer be needed once **FOSSBilling 0.8.4** is released.
 
 ## Upgrade
 

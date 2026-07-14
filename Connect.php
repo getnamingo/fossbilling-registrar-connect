@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 /**
- * FOSSBilling registrar adapter for utopia-php/domains.
+ * FOSSBilling registrar adapter for namingo/registrars.
  *
  *
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-License-Identifier: MIT
  */
 
 $autoload = __DIR__ . '/../../../namingo/vendor/autoload.php';
@@ -78,15 +78,15 @@ class Registrar_Adapter_Connect extends Registrar_AdapterAbstract
             'form' => [
                 'username' => ['text', [
                     'label' => 'Username',
-                    'description' => 'The reseller username for OpenSRS or the API username for Name.com.',
+                    'description' => 'The username used for registrar authentication, such as a reseller or API username.',
                 ]],
                 'api_key' => ['password', [
                     'label' => 'API Key / API Token',
-                    'description' => 'The OpenSRS API key or Name.com API token.',
+                    'description' => 'The API key or token used for registrar authentication.',
                 ]],
                 'password' => ['password', [
                     'label' => 'Password / Secret Key',
-                    'description' => 'Required by OpenSRS. Leave empty for Name.com.',
+                    'description' => 'The password or secret key, if required by the registrar.',
                     'required' => false,
                 ]],
                 'registrar' => ['select', [
@@ -123,9 +123,6 @@ class Registrar_Adapter_Connect extends Registrar_AdapterAbstract
     {
         /*
         $this->getLog()->debug('Checking if domain can be transferred: ' . $domain->getName());
-
-        Namingo Registrars exposes checkTransferStatus(), which checks an existing
-        transfer. It does not determine whether a new transfer is eligible.
         */
 
         return true;
@@ -216,8 +213,6 @@ class Registrar_Adapter_Connect extends Registrar_AdapterAbstract
     {
         /*
         $this->getLog()->debug('Removing domain: ' . $domain->getName());
-
-        Namingo Registrars does not expose a domain deletion method.
         */
 
         return true;
@@ -252,8 +247,6 @@ class Registrar_Adapter_Connect extends Registrar_AdapterAbstract
     {
         /*
         $this->getLog()->debug('Updating contact info: ' . $domain->getName());
-
-        Namingo Registrars does not expose a contact-update method.
         */
 
         return true;
